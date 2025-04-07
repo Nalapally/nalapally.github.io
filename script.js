@@ -48,7 +48,7 @@ $(document).ready(function () {
         for (let fruit in cart) {
             message += `${fruit}: ${cart[fruit].quantity} x ₹${cart[fruit].price} = ₹${cart[fruit].quantity * cart[fruit].price}\n`;
         }
-        let whatsappLink = `https://wa.me/917898912345?text=${encodeURIComponent(message)}`;
+        let whatsappLink = `https://wa.me/918143862672?text=${encodeURIComponent(message)}`;
         window.open(whatsappLink, "_blank");
     });
 });
