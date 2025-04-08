@@ -103,13 +103,13 @@ function showToast(message) {
             message += `${fruit}: ${cart[fruit].quantity} x ₹${cart[fruit].price} = ₹${itemTotal}\n`;
         }
 
-        message += `\nTotal Amount: ₹${totalAmount}`;
+        message += `Total Amount: ₹${totalAmount}\n`;
         if (totalAmount >= 500) {
             message += "\n🎉 Congratulations! You're eligible for free delivery!";
         } else {
             message += `\nOrder above ₹500 to get free delivery.`;
         }
-        message += "\nPlease share your location for delivery.";
+        message += "\nPlease share your location/address for delivery.";
 
         let whatsappLink = `https://wa.me/918143862672?text=${encodeURIComponent(message)}`;
         window.open(whatsappLink, "_blank");
