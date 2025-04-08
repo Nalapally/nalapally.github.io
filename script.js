@@ -103,7 +103,7 @@ function showToast(message) {
             message += `${fruit}: ${cart[fruit].quantity} x ₹${cart[fruit].price} = ₹${itemTotal}\n`;
         }
 
-        message += `Total Amount: ₹${totalAmount}\n`;
+        message += `\nTotal Amount: ₹${totalAmount}`;
         if (totalAmount >= 500) {
             message += "\n🎉 Congratulations! You're eligible for free delivery!";
         } else {
