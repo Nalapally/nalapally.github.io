@@ -4,19 +4,10 @@ body {
     background: linear-gradient(to bottom, #f7c8d7, #f8e8a2);
 }
 
-.navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-
-.card {
-    margin: 10px;
-}
-
 .card-img-top {
     height: 150px;
-    object-fit: cover;
+    width: auto;
+    object-fit: contain;
 }
 
 #cart-summary {
@@ -26,9 +17,23 @@ body {
     margin: 10px auto;
     max-width: 500px;
 }
-.card-img-top {
-    height: 30px;
-    width: 30px;
-    object-fit: cover;
-    margin: auto;
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #28a745; /* Green for success */
+    color: #fff; /* White text for contrast */
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    z-index: 1000; /* Ensure it appears on top of other elements */
+    animation: fadeInOut 2s; /* Animates the appearance and disappearance */
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(20px); }
+    10% { opacity: 1; transform: translateY(0); }
+    90% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(20px); }
 }
