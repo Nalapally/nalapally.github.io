@@ -65,16 +65,20 @@
           <div class="mb-3">
             <label class="form-label">Select Time Slot</label>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="slot" id="slot1" value="Slot 1" checked>
-              <label class="form-check-label" for="slot1">Slot 1</label>
+              <input class="form-check-input" type="radio" name="slot" id="morning" value="Morning (6:00 AM - 12:00 PM)" disabled>
+              <label class="form-check-label" for="morning">Morning (6:00 AM - 12:00 PM)</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="slot" id="slot2" value="Slot 2">
-              <label class="form-check-label" for="slot2">Slot 2</label>
+              <input class="form-check-input" type="radio" name="slot" id="afternoon" value="Afternoon (12:00 PM - 05:00 PM)" disabled>
+              <label class="form-check-label" for="afternoon">Afternoon (12:00 PM - 05:00 PM)</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="slot" id="slot3" value="Slot 3">
-              <label class="form-check-label" for="slot3">Slot 3</label>
+              <input class="form-check-input" type="radio" name="slot" id="evening" value="Evening (05:00 PM - 09:00 PM)">
+              <label class="form-check-label" for="evening">Evening (05:00 PM - 09:00 PM)</label>
+            </div>
+		<div class="form-check">
+              <input class="form-check-input" type="radio" name="slot" id="night" value="Night (09:00 PM - 12:00 PM)" checked>
+              <label class="form-check-label" for="night">Night (09:00 PM - 06:00 AM)</label>
             </div>
           </div>
         </form>
