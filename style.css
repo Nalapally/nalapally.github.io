@@ -10,6 +10,7 @@ body {
     object-fit: contain;
 }
 
+/* Adjust cart summary width on larger screens */
 #cart-summary {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -17,23 +18,74 @@ body {
     margin: 10px auto;
     max-width: 500px;
 }
-.toast {
+
+/* Snackbar styles */
+.snackbar {
+    visibility: hidden; /* Hidden by default */
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #28a745; /* Green for success */
-    color: #fff; /* White text for contrast */
-    padding: 10px 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    font-size: 1rem;
-    z-index: 1000; /* Ensure it appears on top of other elements */
-    animation: fadeInOut 2s; /* Animates the appearance and disappearance */
+    z-index: 9999;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
 }
+
+/* Show the snackbar (add animation) */
+.snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+
 
 @keyframes fadeInOut {
     0% { opacity: 0; transform: translateY(20px); }
     10% { opacity: 1; transform: translateY(0); }
     90% { opacity: 1; }
     100% { opacity: 0; transform: translateY(20px); }
+}
+
+/* Media query for extra small devices */
+@media (max-width: 576px) {
+    .card-img-top {
+        height: 100px;
+    }
+
+    #cart-summary {
+        max-width: 90%;
+        padding: 8px;
+        margin: 10px auto;
+    }
+    
+    /* Optional: Reduce font size for better fit on smaller screens */
+    body {
+        font-size: 0.9rem;
+    }
 }

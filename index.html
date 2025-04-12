@@ -1,35 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahesh Fruits Shop</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mahesh Fruits Shop</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Mahesh Fruits Shop - Medchal</a>
-        </div>
-    </nav>
-
-    <!-- Fruits Section -->
-    <div class="container">
-        <h2 class="text-center my-4">Our Fruits</h2>
-        <div class="row" id="fruit-list">
-            <!-- Fruits dynamically added here -->
-        </div>
-        <h3 class="text-center my-4">Order Summary</h3>
-        <div id="cart-summary" class="text-center"></div>
-        <div class="text-center my-4">
-            <button class="btn btn-success" id="orderButton">Order on WhatsApp</button>
-        </div>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Mahesh Fruits Shop - Medchal</a>
+      <!-- Navbar toggle button for mobile view -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Collapsible content -->
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <!-- Add more navigation links if needed -->
+      </div>
     </div>
+  </nav>
+
+<!-- Inline Notification Container -->
+<div id="notification" 
+     class="alert alert-info text-center" 
+     style="display: none; position: fixed; top: 60px; left: 50%; transform: translateX(-50%); z-index: 9999; max-width: 90%; padding: 10px;">
+</div>
 
 
-    <script src="script.js"></script>
+  <!-- Fruits Section -->
+  <div class="container">
+    <h2 class="text-center my-4">Our Fruits</h2>
+    <div class="row" id="fruit-list">
+      <!-- Fruits dynamically added here -->
+    </div>
+    <h3 class="text-center my-4">Order Summary</h3>
+<div class="alert alert-info text-center" id="deliveryMessage">
+  Order above ₹500 to get free delivery.
+</div>
+    <div id="cart-summary" class="text-center"></div>
+    <div class="text-center my-4">
+      <button class="btn btn-success" id="orderButton">Order on WhatsApp</button>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (for the navbar toggle functionality) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

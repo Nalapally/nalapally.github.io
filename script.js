@@ -4,14 +4,35 @@ $(document).ready(function () {
         { name: "Grapes", price: 70, image: "images/grapes.png" }
     ];
 
+    // Configuration object for image dimensions
+    const imageOptions = {
+        height: '150px',  // Change as needed
+        width: 'auto'     // Change to a value like '150px' for fixed width
+    };
+
     let cart = {};
 
-    // Render fruits dynamically
+    // Helper function to generate order id in yyyyMMddHHmmss format
+    function generateOrderId() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+        const day = String(now.getDate()).padStart(2, "0");
+        const hours = String(now.getHours()).padStart(2, "0");
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+        const seconds = String(now.getSeconds()).padStart(2, "0");
+        return `${year}${month}${day}${hours}${minutes}${seconds}`;
+    }
+
+    // Render fruits dynamically with inline image styles
     fruits.forEach((fruit, index) => {
         $("#fruit-list").append(`
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="${fruit.image}" class="card-img-top" alt="${fruit.name}">
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="card my-2">
+                    <img src="${fruit.image}" 
+                         class="card-img-top" 
+                         alt="${fruit.name}"
+                         style="height: ${imageOptions.height}; width: ${imageOptions.width}; object-fit: contain;">
                     <div class="card-body text-center">
                         <h5>${fruit.name}</h5>
                         <p>Price: ₹${fruit.price}</p>
@@ -21,6 +42,7 @@ $(document).ready(function () {
             </div>
         `);
     });
+
 
     // Add to cart and show toast
 $(".add-to-cart").click(function () {
@@ -34,7 +56,7 @@ $(".add-to-cart").click(function () {
     }
 
     displayCartSummary();
-    showToast(`${fruit.name} added to cart!`); // This invokes the toast function
+   showNotification(`${fruit.name} added to cart!`);
 });
 
 
@@ -73,18 +95,13 @@ $(".add-to-cart").click(function () {
         });
     }
 
-    // Toast notification
-function showToast(message) {
-    const toast = document.createElement("div"); // Create toast element
-    toast.className = "toast"; // Add the 'toast' CSS class
-    toast.textContent = message; // Set the message content
 
-    document.body.appendChild(toast); // Append the toast to the body
+    // Inline notification function.
+    function showNotification(message) {
+        const notification = $("#notification");
+        notification.text(message).fadeIn(300).delay(1500).fadeOut(300);
+    }
 
-    setTimeout(() => {
-        toast.remove(); // Remove toast after 2 seconds
-    }, 2000);
-}
 
 
     // Order on WhatsApp
@@ -94,7 +111,10 @@ function showToast(message) {
             return;
         }
 
-        let message = "Order Summary:\n";
+// Generate unique order ID
+        const orderId = generateOrderId();
+
+        let message = `Order ID: ${orderId}\nOrder Summary:\n`;
         let totalAmount = 0;
 
         for (let fruit in cart) {
