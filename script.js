@@ -104,17 +104,32 @@ $(".add-to-cart").click(function () {
 
 
 
-    // Order on WhatsApp
+   // When "Order on WhatsApp" is clicked, show the order modal if the cart is not empty.
     $("#orderButton").click(function () {
         if (Object.keys(cart).length === 0) {
             alert("Your cart is empty! Please add some fruits.");
             return;
         }
 
-// Generate unique order ID
-        const orderId = generateOrderId();
+        // Show the Bootstrap modal for order date and slot selection.
+        let orderModal = new bootstrap.Modal(document.getElementById('orderModal'), {
+          keyboard: false
+        });
+        orderModal.show();
+    });
 
-        let message = `Order ID: ${orderId}\nOrder Summary:\n`;
+    // When the user confirms their order in the modal.
+    $("#confirmOrder").click(function () {
+        const deliveryDate = $("#deliveryDate").val();
+        if (!deliveryDate) {
+            alert("Please select a delivery date.");
+            return;
+        }
+        const selectedSlot = $("input[name='slot']:checked").val();
+
+        // Generate order details including a unique order ID.
+        const orderId = generateOrderId();
+        let message = `Order ID: ${orderId}\nDelivery Date: ${deliveryDate}\nTime Slot: ${selectedSlot}\nOrder Summary:\n`;
         let totalAmount = 0;
 
         for (let fruit in cart) {
@@ -122,16 +137,22 @@ $(".add-to-cart").click(function () {
             totalAmount += itemTotal;
             message += `${fruit}: ${cart[fruit].quantity} x ₹${cart[fruit].price} = ₹${itemTotal}\n`;
         }
-
-        message += `\nTotal Amount: ₹${totalAmount}`;
+        message += `\nTotal Amount: ₹${totalAmount}\n`;
+        
         if (totalAmount >= 500) {
             message += "\n🎉 Congratulations! You're eligible for free delivery!";
         } else {
-            message += `\nOrder above ₹500 to get free delivery.`;
+            message += "\nOrder above ₹500 to get free delivery.";
         }
         message += "\nPlease share your location/address for delivery.";
 
+        // Open WhatsApp link with the order message.
         let whatsappLink = `https://wa.me/918143862672?text=${encodeURIComponent(message)}`;
         window.open(whatsappLink, "_blank");
+
+        // Hide the modal once the order is confirmed.
+        let modalEl = document.getElementById("orderModal");
+        let modalInstance = bootstrap.Modal.getInstance(modalEl);
+        modalInstance.hide();
     });
 });
